@@ -22,6 +22,6 @@ public class FieldError {
         if (isTomorrowAWeekDay == true) {
             boolean timeToParty = false;
         }
-       System.out.println(timeToParty); // Error: cannot find variable timeToParty
+        System.out.println(timeToParty); // Error: cannot find variable timeToParty
     }
 }
