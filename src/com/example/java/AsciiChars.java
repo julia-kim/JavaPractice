@@ -10,7 +10,7 @@ public class AsciiChars {
         // AsciiChars.printLowerCase();
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("\nPlease enter your name: ");
+        System.out.print("Please enter your name: ");
         String name = sc.nextLine();
         System.out.println("Hello " + name + "!");
         System.out.print("Do you wish to continue to the interactive portion (y/n)? ");
@@ -40,6 +40,10 @@ public class AsciiChars {
                 String favoriteActor = sc.next();
                 AsciiChars.errorCheck("Enter a random number between 1 and 50. ", sc);
                 int randomNo = sc.nextInt();
+                while (randomNo < 1 || randomNo > 50) {
+                    AsciiChars.errorCheck("Please enter a number between 1 and 50. ", sc);
+                    randomNo = sc.nextInt();
+                }
 
                 int magicNo;
                 // user favorite quarterback jersey number or lucky number, multiplied by a random number
