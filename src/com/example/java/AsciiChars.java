@@ -14,9 +14,10 @@ public class AsciiChars {
         String name = sc.nextLine();
         System.out.println("Hello " + name + "!");
         System.out.print("Do you wish to continue to the interactive portion (y/n)? ");
+        AsciiChars.errorCheckForYN(sc);
         String answer = sc.next();
-        boolean no = answer.equalsIgnoreCase("n") || answer.equalsIgnoreCase("no");
-        boolean yes = answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes");
+        boolean no = answer.equalsIgnoreCase("n");
+        boolean yes = answer.equalsIgnoreCase("y");
         if (no || !yes) {
             System.out.println("Please return later to complete the survey.");
             sc.close();
@@ -26,22 +27,23 @@ public class AsciiChars {
             do {
                 System.out.print("What is the name of your favorite pet? ");
                 String petName = sc.next();
-                AsciiChars.errorCheck("What is the age of your favorite pet? ", sc);
+                AsciiChars.errorCheckForInt("What is the age of your favorite pet? ", sc);
                 int petAge = sc.nextInt();
-                AsciiChars.errorCheck("What is your lucky number? ", sc);
+                AsciiChars.errorCheckForInt("What is your lucky number? ", sc);
                 int luckyNo = sc.nextInt();
                 System.out.print("Do you have a favorite quarterback (y/n)? ");
+                AsciiChars.errorCheckForYN(sc);
                 String favoriteQB = sc.next();
-                AsciiChars.errorCheck("If 'yes' to the above, what is their jersey number (enter 0 to skip)? ", sc);
+                AsciiChars.errorCheckForInt("If 'yes' to the above, what is their jersey number (enter 0 to skip)? ", sc);
                 int jerseyNo = sc.nextInt();
-                AsciiChars.errorCheck("What is the two-digit model year of your car (2017 = 17)? ", sc);
+                AsciiChars.errorCheckForInt("What is the two-digit model year of your car (2017 = 17)? ", sc);
                 int modelYear = sc.nextInt();
                 System.out.print("What is the first name of your favorite actor or actress? ");
                 String favoriteActor = sc.next();
-                AsciiChars.errorCheck("Enter a random number between 1 and 50. ", sc);
+                AsciiChars.errorCheckForInt("Enter a random number between 1 and 50. ", sc);
                 int randomNo = sc.nextInt();
                 while (randomNo < 1 || randomNo > 50) {
-                    AsciiChars.errorCheck("Please enter a number between 1 and 50. ", sc);
+                    AsciiChars.errorCheckForInt("Please enter a number between 1 and 50. ", sc);
                     randomNo = sc.nextInt();
                 }
 
@@ -104,6 +106,7 @@ public class AsciiChars {
                 System.out.println("Magic ball: " + magicNo);
 
                 System.out.print("Would you like to generate another set of numbers? (y/n)? ");
+                AsciiChars.errorCheckForYN(sc);
                 String again = sc.next();
                 if (again.equalsIgnoreCase("n")) {
                     System.out.println("Thanks for playing!");
@@ -135,7 +138,7 @@ public class AsciiChars {
     }
 
     // does error checking for questions that ask for a number
-    public static void errorCheck(String question, Scanner sc) {
+    public static void errorCheckForInt(String question, Scanner sc) {
         boolean err = true;
         do {
             System.out.print(question);
@@ -148,5 +151,13 @@ public class AsciiChars {
                 err = false;
             }
         } while (err);
+    }
+
+    // does error checking for y/n questions
+    public static void errorCheckForYN(Scanner sc) {
+        while (!sc.hasNext("[YyNn]")) {
+            System.out.print("Please input either 'y' or 'n'. ");
+            sc.next();
+        }
     }
 }
